@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+# Creating persistent volume claim (PVC) for WordPress ( frontend )
+metadata:
+  name: mysql-pv-claim
+  labels:
+    app: wordpress
+spec:
+  storageClassName: test-storage
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+# Creating persistent volume claim (PVC) for MySQL  ( Backend )
+metadata:
+  name: wp-pv-claim
+  labels:
+    app: wordpress
+spec:
+  storageClassName: test-storage
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi

@@ -1,0 +1,60 @@
+apiVersion: v1
+# Kind denotes what kind of resource/object will kubernetes will create
+kind: Service
+# metadata helps uniquely identify the object, including a name string, UID, and optional namespace.
+metadata:
+  name: wordpress-mysql
+# Labels are key/value pairs to specify attributes of objects that are meaningful and relevant to users.
+  labels:
+    app: wordpress
+# spec define what state you desire for the object
+spec:
+  ports:
+    - port: 3306
+# The selector field allows deployment to identify which Pods to manage.
+  selector:
+    app: wordpress
+    tier: mysql
+  clusterIP: None
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: wordpress-mysql
+  labels:
+    app: wordpress
+spec:
+  selector:
+    matchLabels:
+      app: wordpress
+      tier: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: wordpress
+        tier: mysql
+    spec:
+      containers:
+      - image: mysql:5.6
+        name: mysql
+        env:
+# Creating the enviornment variable MYSQL_ROOT_PASSWORD whose value will be taken from secrets 
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: password
+        ports:
+        - containerPort: 3306
+          name: mysql
+# Volumes that we created PVC will be mounted here.
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+# Defining the volumes ( PVC ).
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim

@@ -1,6 +1,29 @@
 # wordpress-kubernetes-statefulset-deployment
 A sample project to deploy statefulset with kubernetes.
 
+***********************************************************************************************************
+For this project to work properly we need to ensure few things: 
+
+1.) For load balancer to work with AWS EKS cluster :-
+Install and setup AWS Load Balancer Controller for EKS cluster :-
+For this use the following link :- 
+https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html
+
+But for it to work you will also need to Create an IAM OIDC provider for your cluster.You can use the following link for this purpose.
+https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html
+
+Apart from that we also need to set some tags in all subnets.
+You can check following links for help and details : 
+https://www.youtube.com/watch?v=3WbEt_sfTWU
+https://aws.amazon.com/premiumsupport/knowledge-center/eks-load-balancer-controller-subnets/
+https://aws.amazon.com/premiumsupport/knowledge-center/eks-vpc-subnet-discovery/
+
+2.) For provisioning of persistent volumes to work :-
+We will need to setup Amazon EBS CSI driver. You can check following link for help.
+https://aws.amazon.com/premiumsupport/knowledge-center/eks-persistent-storage/
+
+***********************************************************************************************************
+
 Create a namespace :-
 kubectl create namespace stateful-deployment
 
