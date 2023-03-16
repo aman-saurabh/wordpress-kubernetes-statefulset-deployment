@@ -18,11 +18,12 @@ https://www.youtube.com/watch?v=3WbEt_sfTWU
 https://aws.amazon.com/premiumsupport/knowledge-center/eks-load-balancer-controller-subnets/
 https://aws.amazon.com/premiumsupport/knowledge-center/eks-vpc-subnet-discovery/
 
-2.) For provisioning of persistent volumes to work :-
+2.) For dynamic provisioning of persistent volumes to work :-
 We will need to setup Amazon EBS CSI driver. You can check following link for help.
 https://aws.amazon.com/premiumsupport/knowledge-center/eks-persistent-storage/
-
 ***********************************************************************************************************
+
+Note :- Here we have also created pvol.yaml to create persistent volume manually. But this will not work with statefulsets, so we have setup dynamic provisioning of persistent volume.
 
 Create a namespace :-
 kubectl create namespace stateful-deployment
