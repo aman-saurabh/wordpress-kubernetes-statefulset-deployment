@@ -35,6 +35,8 @@ Verify that service and deployment is created successfully :-
 kubectl get pods -o wide --namespace=stateful-deployment
 
 Now you can go to Load balancers(Inside EC2 section), select the newly created load balancer for your service and copy the DNS URL and enter that in the browser. DNS URL should be something like below:
+
 a5re9133c0eed943gh46gfa9c542-6545459600.ap-south-1.elb.amazonaws.com
+
 So Enter the following URL in the browser and you should be able to visit the workpress site we deployed. 
 http://a5re9133c0eed943gh46gfa9c542-6545459600.ap-south-1.elb.amazonaws.com
