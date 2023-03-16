@@ -1,6 +1,9 @@
 # wordpress-kubernetes-statefulset-deployment
 A sample project to deploy statefulset with kubernetes.
 
+For reference you can check following link :- 
+https://automateinfra.com/2021/12/19/how-to-deploy-kubernetes-stateful-application-or-kubernetes-statefulsets-in-aws-eks-cluster/
+
 ***********************************************************************************************************
 For this project to work properly we need to ensure few things: 
 
